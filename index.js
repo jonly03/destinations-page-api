@@ -1,7 +1,18 @@
 const express = require("express");
 const server = express(); // This server is deaf
 
-server.listen(3000); // Told the server to listen on port 3000
+// const PORT = process.env.PORT || 3000;
+
+let PORT;
+if (process.env.PORT !== undefined) {
+  PORT = process.env.PORT;
+} else {
+  PORT = 3000;
+}
+
+server.listen(PORT, () => {
+  console.log(`Listening on port: ${PORT}`);
+}); // Told the server to listen on port available port (when deployed) or 3000 when local
 
 const destinationsDB = [
   {
